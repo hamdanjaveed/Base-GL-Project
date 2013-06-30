@@ -21,6 +21,9 @@
 		AC01BFCD1780D5FB00F4447A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC01BFAF1780D5FA00F4447A /* UIKit.framework */; };
 		AC01BFD51780D5FB00F4447A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AC01BFD31780D5FB00F4447A /* InfoPlist.strings */; };
 		AC01BFD71780D5FB00F4447A /* Base_GL_ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC01BFD61780D5FB00F4447A /* Base_GL_ProjectTests.m */; };
+		AC01BFE21780D61E00F4447A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC01BFE01780D61E00F4447A /* GLKit.framework */; };
+		AC01BFE31780D61E00F4447A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC01BFE11780D61E00F4447A /* OpenGLES.framework */; };
+		AC01BFE51780D62500F4447A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC01BFE41780D62500F4447A /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		AC01BFD21780D5FB00F4447A /* Base GL ProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Base GL ProjectTests-Info.plist"; sourceTree = "<group>"; };
 		AC01BFD41780D5FB00F4447A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AC01BFD61780D5FB00F4447A /* Base_GL_ProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Base_GL_ProjectTests.m; sourceTree = "<group>"; };
+		AC01BFE01780D61E00F4447A /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		AC01BFE11780D61E00F4447A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		AC01BFE41780D62500F4447A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC01BFE51780D62500F4447A /* QuartzCore.framework in Frameworks */,
+				AC01BFE21780D61E00F4447A /* GLKit.framework in Frameworks */,
+				AC01BFE31780D61E00F4447A /* OpenGLES.framework in Frameworks */,
 				AC01BFAE1780D5FA00F4447A /* CoreGraphics.framework in Frameworks */,
 				AC01BFB01780D5FA00F4447A /* UIKit.framework in Frameworks */,
 				AC01BFAC1780D5FA00F4447A /* Foundation.framework in Frameworks */,
@@ -101,6 +110,9 @@
 		AC01BFAA1780D5FA00F4447A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AC01BFE41780D62500F4447A /* QuartzCore.framework */,
+				AC01BFE01780D61E00F4447A /* GLKit.framework */,
+				AC01BFE11780D61E00F4447A /* OpenGLES.framework */,
 				AC01BFAB1780D5FA00F4447A /* Foundation.framework */,
 				AC01BFAD1780D5FA00F4447A /* CoreGraphics.framework */,
 				AC01BFAF1780D5FA00F4447A /* UIKit.framework */,
@@ -159,6 +171,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AC01BFDA1780D5FB00F4447A /* Build configuration list for PBXNativeTarget "Base GL Project" */;
 			buildPhases = (
+				AC01BFE61780D62E00F4447A /* ShellScript */,
 				AC01BFA41780D5FA00F4447A /* Sources */,
 				AC01BFA51780D5FA00F4447A /* Frameworks */,
 				AC01BFA61780D5FA00F4447A /* Resources */,
@@ -244,6 +257,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AC01BFE61780D62E00F4447A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nbN=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$INFOPLIST_FILE\")\nbN=$((0x$bN))\nbN=$(($bN + 1))\nbN=$(printf \"%X\" $bN)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $bN\" \"$INFOPLIST_FILE\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AC01BFA41780D5FA00F4447A /* Sources */ = {
@@ -375,6 +404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Base GL Project/Base GL Project-Prefix.pch";
 				INFOPLIST_FILE = "Base GL Project/Base GL Project-Info.plist";
@@ -388,6 +418,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Base GL Project/Base GL Project-Prefix.pch";
 				INFOPLIST_FILE = "Base GL Project/Base GL Project-Info.plist";
