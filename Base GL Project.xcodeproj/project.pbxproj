@@ -24,6 +24,7 @@
 		AC01BFE21780D61E00F4447A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC01BFE01780D61E00F4447A /* GLKit.framework */; };
 		AC01BFE31780D61E00F4447A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC01BFE11780D61E00F4447A /* OpenGLES.framework */; };
 		AC01BFE51780D62500F4447A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC01BFE41780D62500F4447A /* QuartzCore.framework */; };
+		AC01BFED1781067700F4447A /* AGLKContext.m in Sources */ = {isa = PBXBuildFile; fileRef = AC01BFEC1781067700F4447A /* AGLKContext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		AC01BFE01780D61E00F4447A /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		AC01BFE11780D61E00F4447A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		AC01BFE41780D62500F4447A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AC01BFEB1781067700F4447A /* AGLKContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGLKContext.h; sourceTree = "<group>"; };
+		AC01BFEC1781067700F4447A /* AGLKContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGLKContext.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,7 @@
 		AC01BFB11780D5FA00F4447A /* Base GL Project */ = {
 			isa = PBXGroup;
 			children = (
+				AC01BFEA1781063100F4447A /* AGKL */,
 				AC01BFBA1780D5FA00F4447A /* GLAppDelegate.h */,
 				AC01BFBB1780D5FA00F4447A /* GLAppDelegate.m */,
 				AC01BFBD1780D5FA00F4447A /* Main.storyboard */,
@@ -162,6 +166,15 @@
 				AC01BFD31780D5FB00F4447A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AC01BFEA1781063100F4447A /* AGKL */ = {
+			isa = PBXGroup;
+			children = (
+				AC01BFEB1781067700F4447A /* AGLKContext.h */,
+				AC01BFEC1781067700F4447A /* AGLKContext.m */,
+			);
+			name = AGKL;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,6 +292,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC01BFED1781067700F4447A /* AGLKContext.m in Sources */,
 				AC01BFB81780D5FA00F4447A /* main.m in Sources */,
 				AC01BFC21780D5FA00F4447A /* GLViewController.m in Sources */,
 				AC01BFBC1780D5FA00F4447A /* GLAppDelegate.m in Sources */,

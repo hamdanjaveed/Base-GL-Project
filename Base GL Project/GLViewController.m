@@ -7,6 +7,7 @@
 //
 
 #import "GLViewController.h"
+#import "AGLKContext.h"
 
 @interface GLViewController () <GLKViewDelegate>
 
@@ -35,10 +36,10 @@ static const SceneVertex vertices[] = {
     NSAssert([view isKindOfClass:[GLKView class]], @"GLViewController's view is not a GLKView");
     
     // create a 2.0 context
-    view.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    view.context = [[AGLKContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
     // set the current context
-    [EAGLContext setCurrentContext:view.context];
+    [AGLKContext setCurrentContext:view.context];
     
     // create a GLKBaseEffect and set its properties
     self.baseEffect = [[GLKBaseEffect alloc] init];
@@ -48,7 +49,7 @@ static const SceneVertex vertices[] = {
     [self.baseEffect setConstantColor:GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f)];
     
     // set the background color
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    [((AGLKContext *)view.context) setClearColor:GLKVector4Make(0.0f, 0.0f, 0.0f, 0.0f)];
     
     glGenBuffers(1, &vertexBufferHandle);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferHandle);
@@ -60,7 +61,7 @@ static const SceneVertex vertices[] = {
     [self.baseEffect prepareToDraw];
     
     // clear the frame buffer
-    glClear(GL_COLOR_BUFFER_BIT);
+    [((AGLKContext *)view.context) clear:GL_COLOR_BUFFER_BIT];
     
     // enable the position vertex attribute
     glEnableVertexAttribArray(GLKVertexAttribPosition);
@@ -74,7 +75,7 @@ static const SceneVertex vertices[] = {
 
 - (void)dealloc {
     // set the current context
-    [EAGLContext setCurrentContext:((GLKView *)self.view).context];
+    [AGLKContext setCurrentContext:((GLKView *)self.view).context];
     
     // delete any unneeded buffers
     if (vertexBufferHandle != 0) {
@@ -84,7 +85,7 @@ static const SceneVertex vertices[] = {
     
     // stop using the current context
     ((GLKView *)self.view).context = nil;
-    [EAGLContext setCurrentContext:nil];
+    [AGLKContext setCurrentContext:nil];
 }
 
 @end
