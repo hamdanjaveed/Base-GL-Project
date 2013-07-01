@@ -8,9 +8,10 @@
 
 #import "GLViewController.h"
 #import "AGLKContext.h"
+#import "AGLKVertexBufferObject.h"
 
 @interface GLViewController () <GLKViewDelegate>
-
+@property (strong, nonatomic) AGLKVertexBufferObject *triangleVBO;
 @end
 
 @implementation GLViewController
@@ -27,6 +28,16 @@ static const SceneVertex vertices[] = {
     // upper left corner
     {{-0.5f,  0.5f, 0.0f}}
 };
+
+- (AGLKVertexBufferObject *)triangleVBO {
+    if (!_triangleVBO) {
+        _triangleVBO = [[AGLKVertexBufferObject alloc] initWithStride:sizeof(SceneVertex)
+                                                     numberOfVertices:sizeof(vertices) / sizeof(vertices[0])
+                                                                 data:vertices
+                                                             andUsage:GL_STATIC_DRAW];
+    }
+    return _triangleVBO;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,10 +61,6 @@ static const SceneVertex vertices[] = {
     
     // set the background color
     [((AGLKContext *)view.context) setClearColor:GLKVector4Make(0.0f, 0.0f, 0.0f, 0.0f)];
-    
-    glGenBuffers(1, &vertexBufferHandle);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferHandle);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect {
@@ -63,25 +70,21 @@ static const SceneVertex vertices[] = {
     // clear the frame buffer
     [((AGLKContext *)view.context) clear:GL_COLOR_BUFFER_BIT];
     
-    // enable the position vertex attribute
-    glEnableVertexAttribArray(GLKVertexAttribPosition);
+    [self.triangleVBO prepareToDrawWithAttribute:GLKVertexAttribPosition
+                             numberOfCoordinates:sizeof(vertices) / sizeof(vertices[0])
+                              offsetOfFirstIndex:0
+                  andShouldEnableVertexAttribute:YES];
     
-    // tell OpenGL where vertex data is located
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, sizeof(SceneVertex), nil);
-    
-    // draw the triangle
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(vertices) / sizeof(vertices[0]));
+    [self.triangleVBO drawArrayWithMode:GL_TRIANGLES
+                       startVertexIndex:0
+                    andNumberOfVertices:sizeof(vertices) / sizeof(vertices[0])];
 }
 
 - (void)dealloc {
     // set the current context
     [AGLKContext setCurrentContext:((GLKView *)self.view).context];
     
-    // delete any unneeded buffers
-    if (vertexBufferHandle != 0) {
-        glDeleteBuffers(1, &vertexBufferHandle);
-        vertexBufferHandle = 0;
-    }
+    self.triangleVBO = nil;
     
     // stop using the current context
     ((GLKView *)self.view).context = nil;

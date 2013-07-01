@@ -8,9 +8,7 @@
 
 #import <GLKit/GLKit.h>
 
-@interface GLViewController : GLKViewController {
-    GLuint vertexBufferHandle;
-}
+@interface GLViewController : GLKViewController
 
 @property (strong, nonatomic) GLKBaseEffect *baseEffect;
 

@@ -25,6 +25,7 @@
 		AC01BFE31780D61E00F4447A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC01BFE11780D61E00F4447A /* OpenGLES.framework */; };
 		AC01BFE51780D62500F4447A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC01BFE41780D62500F4447A /* QuartzCore.framework */; };
 		AC01BFED1781067700F4447A /* AGLKContext.m in Sources */ = {isa = PBXBuildFile; fileRef = AC01BFEC1781067700F4447A /* AGLKContext.m */; };
+		AC01BFF01781094700F4447A /* AGLKVertexBufferObject.m in Sources */ = {isa = PBXBuildFile; fileRef = AC01BFEF1781094700F4447A /* AGLKVertexBufferObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		AC01BFE41780D62500F4447A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AC01BFEB1781067700F4447A /* AGLKContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGLKContext.h; sourceTree = "<group>"; };
 		AC01BFEC1781067700F4447A /* AGLKContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGLKContext.m; sourceTree = "<group>"; };
+		AC01BFEE1781094700F4447A /* AGLKVertexBufferObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AGLKVertexBufferObject.h; sourceTree = "<group>"; };
+		AC01BFEF1781094700F4447A /* AGLKVertexBufferObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AGLKVertexBufferObject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +176,8 @@
 			children = (
 				AC01BFEB1781067700F4447A /* AGLKContext.h */,
 				AC01BFEC1781067700F4447A /* AGLKContext.m */,
+				AC01BFEE1781094700F4447A /* AGLKVertexBufferObject.h */,
+				AC01BFEF1781094700F4447A /* AGLKVertexBufferObject.m */,
 			);
 			name = AGKL;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			files = (
 				AC01BFED1781067700F4447A /* AGLKContext.m in Sources */,
 				AC01BFB81780D5FA00F4447A /* main.m in Sources */,
+				AC01BFF01781094700F4447A /* AGLKVertexBufferObject.m in Sources */,
 				AC01BFC21780D5FA00F4447A /* GLViewController.m in Sources */,
 				AC01BFBC1780D5FA00F4447A /* GLAppDelegate.m in Sources */,
 			);
