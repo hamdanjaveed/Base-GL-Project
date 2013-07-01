@@ -6,8 +6,12 @@
 //  Copyright (c) 2013 Hamdan Javeed. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <GLKit/GLKit.h>
 
-@interface GLViewController : UIViewController
+@interface GLViewController : GLKViewController {
+    GLuint vertexBufferHandle;
+}
+
+@property (strong, nonatomic) GLKBaseEffect *baseEffect;
 
 @end
